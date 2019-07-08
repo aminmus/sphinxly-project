@@ -9,6 +9,7 @@
 </head>
 
 <body>
+ <!-- Change this to check DB instead -->
     <?php if (isset($_POST['visitor-name'])) : ?>
     <h1>Välkommen <?php echo($_POST['visitor-name']) ?>!</h1>
     <?php else : ?>
