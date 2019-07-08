@@ -9,9 +9,8 @@
 </head>
 
 <body>
- <!-- Change this to check DB instead -->
-    <?php if (isset($_POST['visitor-name'])) : ?>
-    <h1>Välkommen <?php echo($_POST['visitor-name']) ?>!</h1>
+    <?php if (isset($data['visitor'])) : ?>
+    <h1>Välkommen <?php echo($data['visitor']) ?>!</h1>
     <?php else : ?>
     <h1>Hej!</h1>
     <form action="index.php" method="POST">

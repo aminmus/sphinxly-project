@@ -1,14 +1,19 @@
 <?php
 namespace App\Controllers;
 
-class Main
+class Main extends \App\Libraries\Controller
 {
     public function __construct()
     {
-        echo 'Main loaded!';
     }
 
     public function index()
     {
+        $data = [
+            // TODO: Change this to instead get visitor name from DB
+            'visitor' => $_POST['visitor-name'] ? $_POST['visitor-name'] : null,
+        ];
+
+        $this->view('main', $data);
     }
 }
