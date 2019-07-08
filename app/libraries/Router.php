@@ -31,7 +31,7 @@ class Router
         $namespacedController = "\\App\\Controllers\\{$this->currentController}";
 
         // Instantiate controller class
-        $this->currentController = new $currentControllerClass;
+        $this->currentController = new $namespacedController;
 
         // Check for second part of url
         if (isset($url[1])) {
