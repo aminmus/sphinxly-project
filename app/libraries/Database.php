@@ -1,6 +1,8 @@
 <?php
 namespace App\Libraries;
 
+use \PDO;
+
 class Database
 {
     private $host = DB_HOST;
