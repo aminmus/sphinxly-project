@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <?php echo($data['tablename'])?>
     <?php if (isset($data['visitor'])) : ?>
     <h1>Välkommen <?php echo($data['visitor']) ?>!</h1>
     <?php else : ?>

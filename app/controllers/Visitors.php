@@ -13,7 +13,6 @@ class Visitors extends \App\Libraries\Controller
         $data = [
             // TODO: Change this to instead get visitor name from DB
             'visitor' => isset($_POST['visitor-name']) ? $_POST['visitor-name'] : null,
-            'tablename' => $this->visitorModel->findOne(),
         ];
 
         $this->view('welcome', $data);
