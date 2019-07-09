@@ -5,7 +5,7 @@ namespace App\Libraries;
 * Base Controller
 * Loads the models and views
 */
-class Controller
+abstract class Controller
 {
     // Load and pass data to view
     public function view($view, $data = [])
