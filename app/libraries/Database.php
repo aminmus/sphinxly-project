@@ -26,7 +26,6 @@ class Database
             $this->handler = new PDO($dsn, $this->user, $this->pass, $options);
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
-            echo($this->error);
         }
     }
 
@@ -61,7 +60,6 @@ class Database
             return $this->statement->execute();
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
-            echo($this->error);
         }
     }
 
