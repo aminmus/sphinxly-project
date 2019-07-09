@@ -9,15 +9,18 @@
 </head>
 
 <body>
-    <?php if (isset($data['visitor'])) : ?>
-    <h1>Välkommen <?php echo($data['visitor']) ?>!</h1>
+    <?php if (isset($data['visitor-name'])) : ?>
+    <h1>Välkommen <?php echo($data['visitor-name']) ?>!</h1>
     <?php else : ?>
     <h1>Hej!</h1>
-    <form action="index.php" method="POST">
+    <form action="<?php echo URLROOT; ?>/visitors/add" method="POST">
         <label>Vänligen skriv in ditt namn
             <input type="text" name="visitor-name">
         </label>
     </form>
+    <?php endif ?>
+    <?php if (isset($data['validation-error'])) : ?>
+    <p><?php echo $data['validation-error'] ?></p>
     <?php endif ?>
 </body>
 

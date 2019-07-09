@@ -3,7 +3,7 @@ namespace App\Libraries;
 
 abstract class Model
 {
-    private $db;
+    protected $db;
 
     public function __construct()
     {
