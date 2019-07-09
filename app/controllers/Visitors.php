@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-class Main extends \App\Libraries\Controller
+class Visitors extends \App\Libraries\Controller
 {
     public function __construct()
     {
@@ -14,6 +14,6 @@ class Main extends \App\Libraries\Controller
             'visitor' => isset($_POST['visitor-name']) ? $_POST['visitor-name'] : null,
         ];
 
-        $this->view('main', $data);
+        $this->view('welcome', $data);
     }
 }

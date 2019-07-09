@@ -9,7 +9,7 @@ namespace App\Libraries;
 
 class Router
 {
-    protected $currentController = 'Main';
+    protected $currentController = 'Visitors';
     protected $currentMethod = 'index';
 
     public function __construct()
