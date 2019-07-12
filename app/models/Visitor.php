@@ -41,5 +41,18 @@ class Visitor extends \App\Libraries\Model
         }
     }
 
-    // TODO: Delete visitor method
+    // Delete a visitor by id
+    public function deleteVisitor($id)
+    {
+        try {
+            $query = 'DELETE FROM visitors WHERE id = :id';
+            $this->db->query($query);
+
+            $this->db->bind(':id', $id);
+
+            return $success = $this->db->execute(); // Either true or false
+        } catch (PDOException $exception) {
+            return $exception->getMessage();
+        }
+    }
 }

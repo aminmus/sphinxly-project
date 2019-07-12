@@ -11,6 +11,7 @@ class Router
 {
     protected $currentController = 'Visitors';
     protected $currentMethod = 'index';
+    protected $params = [];
 
     public function __construct()
     {
@@ -43,8 +44,11 @@ class Router
             }
         }
 
+        // Get params
+        $this->params = $url ? array_values($url) : [];
+
         // Call controller method as callback
-        call_user_func([$this->currentController, $this->currentMethod]);
+        call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
     }
 
     public function getUrl()

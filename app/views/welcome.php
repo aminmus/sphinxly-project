@@ -9,9 +9,12 @@
 </head>
 
 <body>
-    <?php if (isset($data['visitor-name'])) : ?>
+    <?php if (isset($data['visitor'])) : ?>
     <h1><?php echo($data['greeting']) ?>
     </h1>
+    <form action="<?php echo URLROOT; ?>/visitors/delete/<?php echo($data['visitor']->id) ?>" method="post">
+        <button type="submit">Glöm bort mig</button>
+    </form>
     <?php else : ?>
     <h1>Hej!</h1>
     <form action="<?php echo URLROOT; ?>/visitors/show"

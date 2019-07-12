@@ -34,15 +34,15 @@ class Visitors extends \App\Libraries\Controller
             
             // If visitor was found set visitor-name, else create new visitor then set visitor-name
             if (isset($visitor)) {
-                $data['visitor-name'] = $visitor->name;
-                $data['greeting'] = "Välkommen tillbaka {$data['visitor-name']}!";
+                $data['visitor'] = $visitor;
+                $data['greeting'] = "Välkommen tillbaka {$data['visitor']->name}!";
             } else {
                 $this->create($sanitizedInput);
                 
                 $newVisitor = $this->get($sanitizedInput);
 
-                $data['visitor-name'] = $newVisitor->name;
-                $data['greeting'] = "Välkommen {$data['visitor-name']}!";
+                $data['visitor'] = $newVisitor;
+                $data['greeting'] = "Välkommen {$data['visitor']->name}!";
             }
         } else {
             $_SESSION['message'] = 'Ogiltigt namn, försök igen';
@@ -75,4 +75,15 @@ class Visitors extends \App\Libraries\Controller
     }
 
     // Todo: Delete visitor method
+    public function delete($id)
+    {
+        $success = $this->visitorModel->deleteVisitor($id);
+        var_dump($success);
+        if ($success) {
+            $_SESSION['message'] = 'Användare borttagen!';
+            $this->redirect();
+        } else {
+            $data['message'] = 'Ett fel uppstod, kunde inte radera användare';
+        }
+    }
 }
