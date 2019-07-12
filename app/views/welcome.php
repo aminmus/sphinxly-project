@@ -10,8 +10,8 @@
 
 <body>
     <?php if (isset($data['visitor-name'])) : ?>
-    <!-- TODO: Add 'Welcome Back' greeting if user already exists -->
-    <h1>Välkommen <?php echo($data['visitor-name']) ?>!</h1>
+    <h1><?php echo($data['greeting']) ?>
+    </h1>
     <?php else : ?>
     <h1>Hej!</h1>
     <form action="<?php echo URLROOT; ?>/visitors/show"
@@ -21,8 +21,8 @@
         </label>
     </form>
     <?php endif ?>
-    <?php if (isset($data['validation-error'])) : ?>
-    <p><?php echo $data['validation-error'] ?>
+    <?php if (isset($data['message'])) : ?>
+    <p><?php echo $data['message'] ?>
     </p>
     <?php endif ?>
 </body>

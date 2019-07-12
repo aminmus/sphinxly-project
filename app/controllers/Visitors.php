@@ -5,13 +5,21 @@ class Visitors extends \App\Libraries\Controller
 {
     public function __construct()
     {
+        session_start();
         $this->visitorModel = new \App\Models\Visitor;
     }
 
     // Show initial page with form
     public function index()
     {
-        $this->view('welcome');
+        $data = [];
+
+        if (isset($_SESSION['message'])) {
+            $data['message'] = $_SESSION['message'];
+            
+            unset($_SESSION['message']);
+        }
+        $this->view('welcome', $data);
     }
 
     // Handle form for entering visitor name
@@ -22,22 +30,23 @@ class Visitors extends \App\Libraries\Controller
         // Make sure input is not empty
         if (isset($input) && trim($input) !== '') {
             $sanitizedInput = \App\Utils\sanitizeInput($input);
-
             $visitor = $this->get($sanitizedInput);
-
+            
             // If visitor was found set visitor-name, else create new visitor then set visitor-name
             if (isset($visitor)) {
                 $data['visitor-name'] = $visitor->name;
-                // TODO: Add 'Welcome Back' greeting when visitor already exists.
+                $data['greeting'] = "Välkommen tillbaka {$data['visitor-name']}!";
             } else {
                 $this->create($sanitizedInput);
-    
+                
                 $newVisitor = $this->get($sanitizedInput);
-    
+
                 $data['visitor-name'] = $newVisitor->name;
+                $data['greeting'] = "Välkommen {$data['visitor-name']}!";
             }
         } else {
-            $data['validation-error'] = 'Vänligen skriv in ett giltigt namn';
+            $_SESSION['message'] = 'Ogiltigt namn, försök igen';
+            $this->redirect();
         }
         $this->view('welcome', $data);
     }
@@ -47,9 +56,7 @@ class Visitors extends \App\Libraries\Controller
     {
         // Returns false if validation fails or creation was not successful
         if (isset($input) && trim($input) !== '') {
-            $name = \App\Utils\sanitizeInput($input);
-
-            return $success = $this->visitorModel->createVisitor($name);    // Either true or false
+            return $success = $this->visitorModel->createVisitor($input);    // Either true or false
         } else {
             return false;
         }

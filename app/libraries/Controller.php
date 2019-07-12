@@ -18,4 +18,9 @@ abstract class Controller
             die('View does not exist');
         }
     }
+
+    public function redirect($url = '')
+    {
+        header('Location: '. URLROOT . '/' . $url);
+    }
 }
