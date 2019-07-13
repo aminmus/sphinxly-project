@@ -25,10 +25,28 @@ abstract class Model
             if (!empty($result)) {
                 return $result;
             } else {
-                throw new \Exception('Could not fetch result, an error occured.');
+                return false;
             }
         } catch (PDOException $exception) {
             return $exception->getMessage();
+        }
+    }
+
+    // Select everything from a model class that inherits this abstract model
+    public function findAll()
+    {
+        try {
+            $query = "SELECT * FROM " . static::TABLENAME . " ORDER BY id DESC";
+            $this->db->query($query);
+            $results = $this->db->resultSet();
+
+            if (!empty($results)) {
+                return $results;
+            } else {
+                return false;
+            }
+        } catch (PDOException $err) {
+            return $err->getMessage();
         }
     }
 }

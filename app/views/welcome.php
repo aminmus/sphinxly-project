@@ -28,6 +28,9 @@
     <p><?php echo $data['message'] ?>
     </p>
     <?php endif ?>
+    <form action="<?php echo URLROOT; ?>/visitors/file" method="post">
+        <button type="submit">Skapa fil med alla namn</button>
+    </form>
 </body>
 
 </html>

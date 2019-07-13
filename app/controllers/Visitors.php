@@ -74,16 +74,42 @@ class Visitors extends \App\Libraries\Controller
         }
     }
 
-    // Todo: Delete visitor method
     public function delete($id)
     {
         $success = $this->visitorModel->deleteVisitor($id);
-        var_dump($success);
+
         if ($success) {
             $_SESSION['message'] = 'Användare borttagen!';
             $this->redirect();
         } else {
             $data['message'] = 'Ett fel uppstod, kunde inte radera användare';
         }
+    }
+
+    // Save all names to a CSV file 'names.csv' inside the given $directory path
+    public function file()
+    {
+        $directory = dirname(APPROOT) . "/generated-files";
+
+        if (!is_dir($directory)) {
+            mkdir($directory);
+        }
+        $file = fopen("{$directory}/names.csv", 'w');
+
+        $visitors = $this->visitorModel->findAll();
+        if (!empty($visitors)) {
+            $names = [];
+
+            foreach ($visitors as $key => $visitor) {
+                $names[$key] = $visitor['name'];
+            }
+
+            fputcsv($file, $names);
+
+            $_SESSION['message'] = 'Fil skapad!';
+        } else {
+            $_SESSION['message'] = 'Ett fel uppstod: inga namn hittade';
+        }
+        $this->redirect();
     }
 }
