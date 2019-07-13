@@ -87,16 +87,14 @@ class Visitors extends \App\Libraries\Controller
     }
 
     // Save all names to a CSV file 'names.csv' inside the given $directory path
+    // Will overwrite file on consecutive calls
     public function file()
     {
         $directory = dirname(APPROOT) . "/generated-files";
-
-        if (!is_dir($directory)) {
-            mkdir($directory);
-        }
-        $file = fopen("{$directory}/names.csv", 'w');
+        $fileName = 'names';
 
         $visitors = $this->visitorModel->findAll();
+        
         if (!empty($visitors)) {
             $names = [];
 
@@ -104,7 +102,7 @@ class Visitors extends \App\Libraries\Controller
                 $names[$key] = $visitor['name'];
             }
 
-            fputcsv($file, $names);
+            \App\Utils\csvFile($directory, $fileName, $names);
 
             $_SESSION['message'] = 'Fil skapad!';
         } else {
