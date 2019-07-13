@@ -19,7 +19,7 @@ class Visitors extends \App\Libraries\Controller
             
             unset($_SESSION['message']);
         }
-        $this->view('welcome', $data);
+        $this->view('layout', $data);
     }
 
     // Handle form for entering visitor name
@@ -48,7 +48,7 @@ class Visitors extends \App\Libraries\Controller
             $_SESSION['message'] = 'Ogiltigt namn, försök igen';
             $this->redirect();
         }
-        $this->view('welcome', $data);
+        $this->view('layout', $data);
     }
 
     // Create a new visitor by name
@@ -103,8 +103,9 @@ class Visitors extends \App\Libraries\Controller
             }
 
             \App\Utils\csvFile($directory, $fileName, $names);
+            $realPath = realpath("{$directory}/{$fileName}.csv");
 
-            $_SESSION['message'] = 'Fil skapad!';
+            $_SESSION['message'] = "Fil skapad på server! ({$realPath})";
         } else {
             $_SESSION['message'] = 'Ett fel uppstod: inga namn hittade';
         }
