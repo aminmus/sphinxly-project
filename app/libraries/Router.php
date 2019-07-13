@@ -4,7 +4,7 @@ namespace App\Libraries;
 /*
 * Router Class
 * Creates URL & loads controllers
-* URL Format - /controller/method
+* URL Format - /controller/method/params
 */
 
 class Router
