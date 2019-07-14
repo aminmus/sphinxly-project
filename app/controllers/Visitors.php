@@ -86,8 +86,7 @@ class Visitors extends \App\Libraries\Controller
         }
     }
 
-    // Save all names to a CSV file 'names.csv' inside the given $directory path
-    // Will overwrite file on consecutive calls
+    // Save all names to a CSV file 'names.csv' and send to client for download
     public function file()
     {
         $directory = dirname(APPROOT) . "/generated-files";
@@ -102,13 +101,8 @@ class Visitors extends \App\Libraries\Controller
                 $names[$key] = $visitor['name'];
             }
 
+            // Create file and send to client for download
             \App\Utils\csvFile($directory, $fileName, $names);
-            $realPath = realpath("{$directory}/{$fileName}.csv");
-
-            $_SESSION['message'] = "Fil skapad på server! ({$realPath})";
-        } else {
-            $_SESSION['message'] = 'Ett fel uppstod: inga namn hittade';
         }
-        $this->redirect();
     }
 }

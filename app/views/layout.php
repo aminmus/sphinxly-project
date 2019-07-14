@@ -21,7 +21,7 @@
     <?php endif ?>
     <form action="<?php echo URLROOT; ?>/visitors/file"
         method="post">
-        <button type="submit">Skapa fil med namn</button>
+        <button type="submit">Hämta fil med namn</button>
     </form>
 </body>
 
