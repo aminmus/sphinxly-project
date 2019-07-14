@@ -1,7 +1,7 @@
 {
     "autoload": {
-        "psr-4": {"App\\": "app/"},
-        "files": ["app/config/config.php", "app/utils/utility.php"]
+        "psr-4": {"App\\": "App/"},
+        "files": ["App/Config/config.php", "App/Utils/utility.php"]
  
     }
 }
