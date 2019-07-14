@@ -19,6 +19,7 @@ abstract class Controller
         }
     }
 
+    // Redirect to given url
     public function redirect($url = '')
     {
         header('Location: '. URLROOT . '/' . $url);

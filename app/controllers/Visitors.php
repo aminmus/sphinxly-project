@@ -74,6 +74,7 @@ class Visitors extends \App\Libraries\Controller
         }
     }
 
+    // Delete a user upon request
     public function delete($id)
     {
         $success = $this->visitorModel->deleteVisitor($id);
